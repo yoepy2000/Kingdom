@@ -3,7 +3,6 @@ package net.yenaq.kingdom.commands;
 import net.yenaq.kingdom.Core;
 import net.yenaq.kingdom.constants.Kingdom;
 import net.yenaq.kingdom.constants.Profile;
-import net.yenaq.kingdom.constants.Ranks;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -24,7 +23,7 @@ public class removeAlly implements CommandExecutor {
             return true;
         }
         Profile p = new Profile((Player) sender);
-        if (((!p.getRank().toString().equalsIgnoreCase(Ranks.KONING.toString())) || p.getKingdom().getName().equalsIgnoreCase("Guest")) && !sender.isOp()) {
+        if (((!p.getRank().getName().equalsIgnoreCase("Koning")) || p.getKingdom().getName().equalsIgnoreCase("Guest")) && !sender.isOp()) {
             p.sendMessage("&c&lERROR &7Je hebt geen permissie om dit commando te gebruiken.");
             return true;
         }

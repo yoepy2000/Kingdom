@@ -2,10 +2,8 @@ package net.yenaq.kingdom.commands;
 
 import net.yenaq.kingdom.Core;
 import net.yenaq.kingdom.constants.Profile;
-import net.yenaq.kingdom.constants.Ranks;
 import net.yenaq.kingdom.utils.ChatUtil;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -26,7 +24,7 @@ public class Stream implements CommandExecutor {
                 sender.sendMessage(ChatUtil.format("&7Streammodus &cuitgezet&7."));
                 return true;
             }
-            if (sender.isOp() || (sender instanceof Player && (new Profile((Player) sender).getRank() == Ranks.KONING || new Profile((Player) sender).getRank() == Ranks.HERTOG))) {
+            if (sender.isOp() || (sender instanceof Player && (new Profile((Player) sender).getRank().getName().equalsIgnoreCase("Koning") || new Profile((Player) sender).getRank().getName().equalsIgnoreCase("Hertog")))) {
                 if (Core.getInstance().stream) {
                     sender.sendMessage(ChatUtil.format("&7Op het moment staat de streammodus &aaan&7. Weet je zeker dat je deze wilt uitzetten? Typ dan &abinnen 20 seconden &7nog een keer &a/stream&7."));
                     Core.getInstance().streaming.add(sender);

@@ -22,7 +22,7 @@ public class Profile {
 
     private Kingdom kingdom;
     private Player player;
-    private Ranks rank;
+    private Rank rank;
     private boolean isMuted;
     private ConfigurationSection section;
 
@@ -31,7 +31,7 @@ public class Profile {
         this.player = player;
         this.section = Core.getInstance().PlayerDataConfiguration.getConfigurationSection("Players." + player.getUniqueId());
         this.kingdom = new Kingdom(section.getString("Kingdom"));
-        this.rank = Ranks.valueOf(section.getString("Rank"));
+        this.rank = new Rank(section.getString("Rank"));
         this.isMuted = section.getBoolean("Muted");
     }
 
@@ -53,12 +53,12 @@ public class Profile {
         Core.getInstance().saveCustomConfig(Core.getInstance().PlayerDataFile, Core.getInstance().PlayerDataConfiguration);
     }
 
-    public Ranks getRank() {
+    public Rank getRank() {
         return rank;
     }
 
-    public void setRank(Ranks rank) {
-        section.set("Rank", rank.toString());
+    public void setRank(Rank rank) {
+        section.set("Rank", rank.getName());
         Core.getInstance().saveCustomConfig(Core.getInstance().PlayerDataFile, Core.getInstance().PlayerDataConfiguration);
     }
 

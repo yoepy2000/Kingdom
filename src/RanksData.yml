@@ -1,5 +1,6 @@
 # In dit bestand kun je alle ranks aanmaken.
 # Als voorbeeld zijn de ranks speler, koning, hertog en generaal aangemaakt.
+# Het is belangrijk om niks aan de naam hiervan te veranderen!
 
 Ranks:
   Speler:

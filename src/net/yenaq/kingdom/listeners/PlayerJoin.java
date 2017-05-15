@@ -1,20 +1,15 @@
 package net.yenaq.kingdom.listeners;
 
 import net.yenaq.kingdom.Core;
-import net.yenaq.kingdom.constants.Kingdom;
 import net.yenaq.kingdom.constants.Profile;
-import net.yenaq.kingdom.constants.Ranks;
 import net.yenaq.kingdom.utils.ChatUtil;
-import net.yenaq.kingdom.utils.TabList;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.scoreboard.Team;
 
 /**
  * Created by Yannick on 16-Apr-17.
@@ -27,7 +22,7 @@ public class PlayerJoin implements Listener {
         FileConfiguration config = Core.getInstance().PlayerDataConfiguration;
         if (!config.contains("Players." + player.getUniqueId())) {
             config.set("Players." + player.getUniqueId() + ".Kingdom", "Guest");
-            config.set("Players." + player.getUniqueId() + ".Rank", Ranks.SPELER.toString());
+            config.set("Players." + player.getUniqueId() + ".Rank", "Speler");
             config.set("Players." + player.getUniqueId() + ".Muted", false);
             player.sendMessage(ChatUtil.format("&aWelkom op de kingdom, " + player.getName() + "! Omdat je voor het eerst joint ben je een guest, wat betekent dat je nog niet in een kingdom zit. Wacht even tot je koning je in je kingdom zet."));
         }

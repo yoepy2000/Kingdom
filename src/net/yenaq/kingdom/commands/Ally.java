@@ -3,9 +3,8 @@ package net.yenaq.kingdom.commands;
 import net.yenaq.kingdom.Core;
 import net.yenaq.kingdom.constants.Kingdom;
 import net.yenaq.kingdom.constants.Profile;
-import net.yenaq.kingdom.constants.Ranks;
+import net.yenaq.kingdom.constants.Rank;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -13,8 +12,6 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by Yannick on 27-Apr-17.
@@ -27,7 +24,7 @@ public class Ally implements CommandExecutor {
             return true;
         }
         Profile p = new Profile((Player) sender);
-        if (((!p.getRank().toString().equals(Ranks.KONING.toString())) || p.getKingdom().getName().equalsIgnoreCase("Guest")) && !sender.isOp()) {
+        if (((!p.getRank().getName().equals("Koning")) || p.getKingdom().getName().equalsIgnoreCase("Guest")) && !sender.isOp()) {
             p.sendMessage("&c&lERROR &7Je hebt geen permissie om dit commando te gebruiken.");
             return true;
         }
@@ -45,7 +42,7 @@ public class Ally implements CommandExecutor {
                 p.sendMessage("&7Je hebt het alliantieverzoek van &a" + Core.getInstance().allys.get(sender).getName() + " &7geaccepteerd!");
                 for (Player onlineplayers : Bukkit.getOnlinePlayers()) {
                     Profile players = new Profile(onlineplayers);
-                    if (players.getKingdom().getName().equalsIgnoreCase(Core.getInstance().allys.get(sender).getName()) && players.getRank().toString().equalsIgnoreCase(Ranks.KONING.toString())) {
+                    if (players.getKingdom().getName().equalsIgnoreCase(Core.getInstance().allys.get(sender).getName()) && players.getRank().getName().equalsIgnoreCase("Koning")) {
                         players.sendMessage("&7Je alliantieverzoek is geaccepteerd door de koning van &a" + p.getKingdom().getName() + "&7!");
                     }
                 }
@@ -74,14 +71,14 @@ public class Ally implements CommandExecutor {
             return true;
         }
 
-        ArrayList<Ranks> ranks = new ArrayList<>();
+        ArrayList<String> ranks = new ArrayList<>();
         for (Player onlineplayers : Bukkit.getOnlinePlayers()) {
             Profile players = new Profile(onlineplayers);
             if (players.getKingdom().getName().equalsIgnoreCase(target.getName())) {
-                ranks.add(players.getRank());
+                ranks.add(players.getRank().getName());
             }
         }
-        if (!ranks.contains(Ranks.KONING)) {
+        if (!ranks.contains("Koning")) {
             p.sendMessage("&c&lERROR &7De koning van " + target.getName() + " &7is niet online!");
             return true;
         }
@@ -90,7 +87,7 @@ public class Ally implements CommandExecutor {
         for (Player onlineplayers : Bukkit.getOnlinePlayers()) {
             Profile players = new Profile(onlineplayers);
 
-            if (players.getKingdom().getName().equalsIgnoreCase(target.getName()) && players.getRank().toString().equalsIgnoreCase(Ranks.KONING.toString())) {
+            if (players.getKingdom().getName().equalsIgnoreCase(target.getName()) && players.getRank().getName().equalsIgnoreCase("Koning")) {
                 if (Core.getInstance().allys.containsKey(onlineplayers)) {
                     p.sendMessage("&c&lERROR &7deze koning wordt al door iemand uitgenodigd voor een alliantie. ");
                     return true;

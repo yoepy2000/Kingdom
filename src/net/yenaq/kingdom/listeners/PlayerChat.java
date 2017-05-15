@@ -1,7 +1,6 @@
 package net.yenaq.kingdom.listeners;
 
 import net.yenaq.kingdom.constants.Profile;
-import net.yenaq.kingdom.constants.Ranks;
 import net.yenaq.kingdom.utils.ChatUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -28,7 +27,7 @@ public class PlayerChat implements Listener {
                 e.setCancelled(true);
                 for (Player players : Bukkit.getOnlinePlayers()) {
                     //if (players.getLocation().distance(e.getPlayer().getLocation()) < 50) {
-                        players.sendMessage(ChatUtil.format("&7[G] " + p.getKingdom().getPrefix() + " " + Ranks.getPrefix(p.getRank()) + "&f" + e.getPlayer().getName() + ": " + e.getMessage().substring(1)));
+                        players.sendMessage(ChatUtil.format("&7[G] " + p.getKingdom().getPrefix() + " " + p.getRank().getPrefix() + "&f" + e.getPlayer().getName() + ": " + e.getMessage().substring(1)));
                     //}
                 }
                 return;
@@ -36,7 +35,7 @@ public class PlayerChat implements Listener {
             for (Player players : Bukkit.getOnlinePlayers()) {
                 e.setCancelled(true);
                 //if (players.getLocation().distance(e.getPlayer().getLocation()) < 50) {
-                    players.sendMessage(ChatUtil.format("&7[G] " + p.getKingdom().getPrefix() + " " + Ranks.getPrefix(p.getRank()) + "&f"+ e.getPlayer().getName() + ": " + e.getMessage()));
+                    players.sendMessage(ChatUtil.format("&7[G] " + p.getKingdom().getPrefix() + " " + p.getRank().getPrefix() + "&f"+ e.getPlayer().getName() + ": " + e.getMessage()));
                 //}
             }
             return;
@@ -44,7 +43,7 @@ public class PlayerChat implements Listener {
         else if (e.getMessage().startsWith("!")) {
             for (Player players : Bukkit.getOnlinePlayers()) {
                 //if (players.getLocation().distance(e.getPlayer().getLocation()) < 50) {
-                    players.sendMessage(ChatUtil.format("&7[G] " + p.getKingdom().getPrefix() + " " + Ranks.getPrefix(p.getRank()) + "&f"+ e.getPlayer().getName() + ": " + e.getMessage().substring(1)));
+                    players.sendMessage(ChatUtil.format("&7[G] " + p.getKingdom().getPrefix() + " " + p.getRank().getPrefix() + "&f"+ e.getPlayer().getName() + ": " + e.getMessage().substring(1)));
                 //}
             }
             e.setCancelled(true);
@@ -54,10 +53,10 @@ public class PlayerChat implements Listener {
             for (Player players : Bukkit.getOnlinePlayers()) {
                 Profile player = new Profile(players);
                 if (player.getKingdom().getName().equalsIgnoreCase(p.getKingdom().getName()) && !player.isMuted()) {
-                    if (p.getRank().toString().equalsIgnoreCase(Ranks.HERTOG.toString()) || p.getRank().toString().equalsIgnoreCase(Ranks.KONING.toString())) {
-                        player.sendMessage(p.getKingdom().getPrefix() + " " + Ranks.getPrefix(p.getRank()) + e.getPlayer().getName() + ": " + e.getMessage());
+                    if (p.getRank().getName().equalsIgnoreCase("Koning") || p.getRank().getName().equalsIgnoreCase("Hertog")) {
+                        player.sendMessage(p.getKingdom().getPrefix() + " " + p.getRank().getPrefix() + e.getPlayer().getName() + ": " + e.getMessage());
                     } else {
-                        player.sendMessage(p.getKingdom().getPrefix() + " " + Ranks.getPrefix(p.getRank()) + e.getPlayer().getName() + "&7: " + e.getMessage());
+                        player.sendMessage(p.getKingdom().getPrefix() + " " + p.getRank().getPrefix() + e.getPlayer().getName() + "&7: " + e.getMessage());
                     }
                 }
             }

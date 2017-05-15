@@ -3,7 +3,6 @@ package net.yenaq.kingdom.commands;
 import net.yenaq.kingdom.Core;
 import net.yenaq.kingdom.constants.Kingdom;
 import net.yenaq.kingdom.constants.Profile;
-import net.yenaq.kingdom.constants.Ranks;
 import net.yenaq.kingdom.utils.ChatUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -19,12 +18,11 @@ import org.bukkit.entity.Player;
 public class SetKingdom implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (sender.isOp() || (sender instanceof Player && (new Profile((Player) sender).getRank() == Ranks.KONING))) {
-            if (args.length != 2) {
-                sender.sendMessage(ChatColor.RED + "Gebruik het commando op de volgende manier:");
-                sender.sendMessage(ChatColor.RED + "/setkingdom [speler] [kingdom]");
-                return true;
-            }
+        if (args.length != 2) {
+            sender.sendMessage(ChatColor.RED + "Gebruik het commando op de volgende manier:");
+            sender.sendMessage(ChatColor.RED + "/setkingdom [speler] [kingdom]");
+            return true;
+        } if (sender.isOp() || (sender instanceof Player && (new Profile((Player) sender).getRank().getName().equalsIgnoreCase("Koning")))) {
             Player target = Bukkit.getOfflinePlayer(args[0]).getPlayer();
             if(target == null) {
                 sender.sendMessage(ChatColor.RED + "Deze speler bestaat niet!");
@@ -48,7 +46,7 @@ public class SetKingdom implements CommandExecutor {
                     p.sendMessage("&7Je hebt je eigen kingdom verzet naar &a" + kingdom.getName() + "&7.");
                     return true;
                 }
-                sender.sendMessage(ChatUtil.format("&7Kingdom van &a" + target.getName() + " &7verzet naar &a" + kingdom.getName() + "&7."));
+                sender.sendMessage(ChatUtil.format("&7Het kingdom van &a" + target.getName() + " &7is verzet naar &a" + kingdom.getName() + "&7."));
                 p.sendMessage("&7Je kingdom is verzet naar &a" + kingdom.getName() + " &7door &a" + sender.getName() + "&7.");
                 return true;
             }
