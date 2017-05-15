@@ -1,0 +1,19 @@
+name: Kingdom
+author: Yenaq
+version: 1.1
+main: net.yenaq.kingdom.Core
+commands:
+  setrank:
+    description: Hiermee kun je de rank van iemand aanpassen.
+  setkingdom:
+    description: Hiermee kun je het kingdom van iemand aanpassen.
+  togglechat:
+    description: Hiermee kun je je eigen chat muten en unmuten.
+  ally:
+    description: Hiermee kun je een alliantie met andere kingdoms sluiten.
+  removeally:
+    description: Hiermee kun je een alliantie met een ander kingdom verbreken.
+  setkingdomspawn:
+    description: Hiermee kun je de spawn van je kingdom zetten.
+  stream:
+    description: Hiermee zet je de streammodus aan of uit.

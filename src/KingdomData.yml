@@ -1,0 +1,31 @@
+# In dit bestand kun je alle kingdoms aanmaken. Als voorbeeld is het kingdom Guest aangemaakt.
+# Verander vooral de naam hiervan niet, anders werkt de plugin niet goed.
+
+# LET OP: De naam van een kingdom moet altijd beginnen met een hoofdletter, en de andere letters moeten kleine letters zijn (net zoals bij Guest).
+# Als dit bij een kingdom niet zo is kun je het commando /setkingdom niet gebruiken voor dat kingdom.
+# Voor gameplay maakt de naam niet veel uit, de prefix kan namelijk wel gewoon aangepast worden.
+
+Kingdoms:
+
+  # Dit kingdom is het kingdom waar nieuwe mensen in geplaatst worden totdat een koning ze in een ander kingdom zet.
+  Guest:
+
+    # Deze kleur is de kleur die je in de spelerslijst ziet, en boven het hoofd van spelers.
+    # Het moet een minecraft kleur zijn. Als je niet weet wat dit betekent, zoek op google naar minecraft formatting codes en gebruik de Technical Name van de kleur.
+    Color: WHITE
+
+    # Dit is wat er voor de naam van mensen komt te staan als ze iets in de chat typen.
+    # Mensen uit het kingdom Guest kunnen niks in de chat typen, dus het heeft hier geen zin om dat aan te passen.
+    Prefix: ""
+
+    # Dit is de locatie waar mensen respawnen als ze doodgaan.
+    # De notatie is world/x/y/z.
+    # Het is het makkelijkst om dit aan te passen via het /setspawn command.
+    Spawn: world/0/0/0
+
+    # Dit is een lijst van de ally's die een kingdom heeft.
+    # Het is mogelijk om het via dit bestand aan te passen, maar het is makkelijker om ally's toe te voegen via het command /ally ingame.
+    # Mocht je het wel via dit bestand aan willen passen, let er dan op dat je de naam van het kingdom precies overtypt en dat het kingdom ook bestaat.
+    # LET OP! Als je een nieuw kingdom aanmaakt, voeg dan tenminste 1 kingdom als ally toe.
+    Ally:
+      - Guest

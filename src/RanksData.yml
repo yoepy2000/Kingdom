@@ -1,0 +1,12 @@
+# In dit bestand kun je alle ranks aanmaken.
+# Als voorbeeld zijn de ranks speler, koning, hertog en generaal aangemaakt.
+
+Ranks:
+  Speler:
+    Prefix: ''
+  Koning:
+    Prefix: '&7[&6Koning&7] &f'
+  Hertog:
+    Prefix: '&7[&2Hertog&7] &f'
+  Generaal:
+    Prefix: '&7[&cGeneraal&7] '
