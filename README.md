@@ -1,2 +1,1 @@
-"# Kingdom" 
-"Omdat een README.md blijkbaar nodig was" 
+Omdat een README.md blijkbaar nodig was
