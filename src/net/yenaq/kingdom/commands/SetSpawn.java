@@ -1,6 +1,7 @@
 package net.yenaq.kingdom.commands;
 
 import net.yenaq.kingdom.constants.Profile;
+import net.yenaq.kingdom.utils.ChatUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -17,7 +18,7 @@ public class SetSpawn implements CommandExecutor {
             Profile p = new Profile((Player) sender);
             if (args.length == 0) {
                 if (p.getKingdom().getName().equalsIgnoreCase("Guest")) {
-                    p.sendMessage("&c&lERROR &7je kunt dit niet doen als je niet in een kingdom zit");
+                    p.sendMessage("&c&lERROR &7je kunt dit niet doen als je niet in een kingdom zit.");
                     return true;
                 }
                 if (sender.isOp() || p.getRank().getName().equalsIgnoreCase("Koning")) {
@@ -25,7 +26,7 @@ public class SetSpawn implements CommandExecutor {
                     p.sendMessage("&aDe spawn voor je kingdom is gezet!");
                     return true;
                 } else {
-                    p.sendMessage("&c&lERROR &7geen permissie.");
+                    p.sendMessage("&c&lERROR &7Je hebt geen permissie om dit commando te gebruiken.");
                 }
             } else {
                 return true;

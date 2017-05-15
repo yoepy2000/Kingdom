@@ -20,13 +20,13 @@ public class SetRank implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (args.length != 2) {
-            sender.sendMessage(ChatColor.RED + "Gebruik het commando op de volgende manier:");
-            sender.sendMessage(ChatColor.RED + "/setrank [speler] [rank]");
+            sender.sendMessage(ChatUtil.format("&7Gebruik het commando op de volgende manier:"));
+            sender.sendMessage(ChatUtil.format("&c/setrank [speler] [rank]"));
             return true;
         } if (sender.isOp() || (sender instanceof Player && (new Profile((Player) sender).getRank().getName().equalsIgnoreCase("Koning")))) {
             Player target = Bukkit.getOfflinePlayer(args[0]).getPlayer();
             if(target == null) {
-                sender.sendMessage(ChatColor.RED + "Deze speler bestaat niet!");
+                sender.sendMessage(ChatUtil.format("&c&lERROR &7die speler bestaat niet!"));
                 return true;
             }
             Profile p = new Profile(target);
@@ -48,16 +48,16 @@ public class SetRank implements CommandExecutor {
                     return true;
                 }
                 else {
-                    sender.sendMessage(ChatColor.RED + "Deze rank bestaat niet!");
+                    sender.sendMessage(ChatUtil.format("&c&lERROR &7Die rank bestaat niet!"));
                     return true;
                 }
             }
             else {
-                sender.sendMessage(ChatColor.RED + "Je moet in hetzelfde kingdom zitten als de speler aan wie je de rank wilt geven!");
+                sender.sendMessage(ChatUtil.format("&c&lERROR &7Je hebt geen permissie om de rank van deze speler aan te passen."));
                 return true;
             }
         } else {
-            sender.sendMessage(ChatColor.RED + "Je hebt geen permissie om dit commando te gebruiken.");
+            sender.sendMessage(ChatUtil.format("&c&lERROR &7Je hebt geen permissie om dit commando te gebruiken."));
             return true;
         }
 

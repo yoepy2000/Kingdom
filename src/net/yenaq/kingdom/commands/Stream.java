@@ -41,7 +41,7 @@ public class Stream implements CommandExecutor {
                     return true;
                 }
             } else {
-                sender.sendMessage(ChatUtil.format("&c&lERROR &7geen permissie."));
+                sender.sendMessage(ChatUtil.format("&c&lERROR &7Je hebt geen permissie om dit commando te gebruiken."));
             }
 
             return false;

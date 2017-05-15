@@ -19,13 +19,13 @@ public class SetKingdom implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (args.length != 2) {
-            sender.sendMessage(ChatColor.RED + "Gebruik het commando op de volgende manier:");
-            sender.sendMessage(ChatColor.RED + "/setkingdom [speler] [kingdom]");
+            sender.sendMessage(ChatUtil.format("&7Gebruik het commando op de volgende manier:"));
+            sender.sendMessage(ChatUtil.format("&c/setkingdom [speler] [kingdom]"));
             return true;
         } if (sender.isOp() || (sender instanceof Player && (new Profile((Player) sender).getRank().getName().equalsIgnoreCase("Koning")))) {
             Player target = Bukkit.getOfflinePlayer(args[0]).getPlayer();
             if(target == null) {
-                sender.sendMessage(ChatColor.RED + "Deze speler bestaat niet!");
+                sender.sendMessage(ChatUtil.format("&c&lERROR &7die speler bestaat niet!"));
                 return true;
             }
             Profile p = new Profile(target);
@@ -35,7 +35,7 @@ public class SetKingdom implements CommandExecutor {
             String name = s1 + args[1].toLowerCase().substring(1);
 
             if (name.equalsIgnoreCase("Guest")) {
-                sender.sendMessage(ChatColor.RED + "Je kan geen mensen in het kingdom guest zetten!");
+                sender.sendMessage(ChatUtil.format("&c&lERROR &7je kan geen mensen in het kingdom guest zetten!"));
                 return true;
             }
 
@@ -51,12 +51,12 @@ public class SetKingdom implements CommandExecutor {
                 return true;
             }
             else {
-                sender.sendMessage(ChatColor.RED + "Dit kingdom bestaat niet!");
+                sender.sendMessage(ChatUtil.format("&c&lERROR &7Dit kingdom bestaat niet!"));
                 return true;
             }
 
         } else {
-            sender.sendMessage(ChatColor.RED + "Je hebt geen permissie om dit commando te gebruiken.");
+            sender.sendMessage(ChatUtil.format("&c&lERROR &7Je hebt geen permissie om dit commando te gebruiken."));
             return true;
         }
     }

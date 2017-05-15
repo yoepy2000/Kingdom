@@ -1,5 +1,6 @@
 package net.yenaq.kingdom.utils;
 
+import net.yenaq.kingdom.Core;
 import org.bukkit.ChatColor;
 
 /**
@@ -11,7 +12,8 @@ public class ChatUtil {
         try {
             return ChatColor.translateAlternateColorCodes('&', input);
         } catch(Exception e) {
-            return null;
+            Core.getInstance().getServer().getConsoleSender().sendMessage("§cHet is niet gelukt om tekst naar kleur om te zetten. (Misschien is er iets fout gegaan in een prefix)");
+            return input;
         }
     }
 
