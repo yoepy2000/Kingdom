@@ -12,6 +12,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
+import java.util.List;
+import java.util.Set;
+
 /**
  * Created by Yannick on 19-Apr-17.
  */
@@ -30,16 +33,22 @@ public class SetKingdom implements CommandExecutor {
             }
             Profile p = new Profile(target);
             ConfigurationSection section = Core.getInstance().KingdomConfiguration.getConfigurationSection("Kingdoms.");
+            Set<String> kingdoms = section.getKeys(false);
 
-            String s1 = args[1].substring(0, 1).toUpperCase();
-            String name = s1 + args[1].toLowerCase().substring(1);
+            String name = "";
+            for (String s : kingdoms) {
+                if (args[1].equalsIgnoreCase(s)) {
+                    name = s;
+                    break;
+                }
+            }
 
             if (name.equalsIgnoreCase("Guest")) {
-                sender.sendMessage(ChatUtil.format("&c&lERROR &7je kan geen mensen in het kingdom guest zetten!"));
+                sender.sendMessage(ChatUtil.format("&c&lERROR &7Je kunt geen mensen in het kingdom guest zetten!"));
                 return true;
             }
 
-            if (section.contains(name)) {
+            if (kingdoms.contains(name)) {
                 Kingdom kingdom = new Kingdom(name);
                 p.setKingdom(kingdom);
                 if (p.getName().equalsIgnoreCase(sender.getName())) {

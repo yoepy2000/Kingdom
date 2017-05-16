@@ -19,7 +19,7 @@ public class SetRank implements TabCompleter {
     public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
 
         if (cmd.getName().equalsIgnoreCase("setrank") && args.length == 2) {
-            Set<String> names = Core.getInstance().KingdomConfiguration.getConfigurationSection("Ranks").getKeys(false);
+            Set<String> names = Core.getInstance().RanksConfiguration.getConfigurationSection("Ranks").getKeys(false);
             List<String> list = new ArrayList<>();
             if (!args[1].equalsIgnoreCase("")) {
                 for (String s : names) {

@@ -1,6 +1,8 @@
 # In dit bestand kun je alle ranks aanmaken.
 # Als voorbeeld zijn de ranks speler, koning, hertog en generaal aangemaakt.
-# Het is belangrijk om niks aan de naam hiervan te veranderen!
+# Om te voorkomen dat het fout gaat met dingen als permissies, kun je maar beter niet de naam hiervan aanpassen.
+
+# De prefix is wat er in de chat, na de prefix van het kingdom, voor de naam van een speler komt te staan.
 
 Ranks:
   Speler:

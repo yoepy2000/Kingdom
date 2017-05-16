@@ -13,6 +13,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
+import java.util.Set;
+
 /**
  * Created by Yannick on 17-Apr-17.
  */
@@ -26,17 +28,23 @@ public class SetRank implements CommandExecutor {
         } if (sender.isOp() || (sender instanceof Player && (new Profile((Player) sender).getRank().getName().equalsIgnoreCase("Koning")))) {
             Player target = Bukkit.getOfflinePlayer(args[0]).getPlayer();
             if(target == null) {
-                sender.sendMessage(ChatUtil.format("&c&lERROR &7die speler bestaat niet!"));
+                sender.sendMessage(ChatUtil.format("&c&lERROR &7Speler niet gevonden."));
                 return true;
             }
             Profile p = new Profile(target);
             if (sender.isOp() || (sender instanceof Player && (new Profile((Player) sender).getKingdom().getName().equalsIgnoreCase(p.getKingdom().getName())))) {
-                ConfigurationSection section = Core.getInstance().KingdomConfiguration.getConfigurationSection("Kingdoms.");
+                ConfigurationSection section = Core.getInstance().RanksConfiguration.getConfigurationSection("Ranks.");
+                Set<String> ranks = section.getKeys(false);
 
-                String s1 = args[1].substring(0, 1).toUpperCase();
-                String name = s1 + args[1].toLowerCase().substring(1);
+                String name = "";
+                for (String s : ranks) {
+                    if (args[1].equalsIgnoreCase(s)) {
+                        name = s;
+                        break;
+                    }
+                }
 
-                if (section.contains(name)) {
+                if (ranks.contains(name)) {
                     Rank rank = new Rank(name);
                     p.setRank(rank);
                     if (p.getName().equalsIgnoreCase(sender.getName())) {
